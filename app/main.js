@@ -1,0 +1,1 @@
+dispatcher = require('./dispatcher.js');

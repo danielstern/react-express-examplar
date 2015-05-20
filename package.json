@@ -10,7 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.7.2",
+    "browserify": "^10.2.1",
     "gulp": "^3.8.11",
-    "gulp-live-server": "0.0.14"
+    "gulp-live-server": "0.0.14",
+    "reactify": "^1.1.1"
   }
 }

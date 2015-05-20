@@ -17,10 +17,7 @@ backend.get('version/',function(req,res){
 backend.listen(7777);
 
 let frontend = new Express();
-//frontend.get('/',function(req,res){
-//	res.send("Welcome to my app.");
-//})
 
-frontend.use(Express.static(__dirname + '/../app'))
-
+frontend.use(Express.static(__dirname + '/../.tmp'))
+console.log("Frontend listening.");
 frontend.listen(80);
