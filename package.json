@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.8.11"
+    "browser-sync": "^2.7.2",
+    "gulp": "^3.8.11",
+    "gulp-live-server": "0.0.14"
   }
 }

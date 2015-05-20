@@ -17,24 +17,10 @@ backend.get('version/',function(req,res){
 backend.listen(7777);
 
 let frontend = new Express();
-frontend.get('/',function(req,res){
-	res.send("Welcome to my app.");
-})
+//frontend.get('/',function(req,res){
+//	res.send("Welcome to my app.");
+//})
+
+frontend.use(Express.static(__dirname + '/../app'))
 
 frontend.listen(80);
-
-for (var i = 23000; i < 0b101110110111111; i++){
-	let q = new Express();
-	var n = i;
-	
-	q.get('/',function(req,res){
-		res.json({
-			amd:n*n,
-			v:n,
-			b:n.toString(2) 
-		})
-	});
-	
-	q.listen(i);
-	
-}
