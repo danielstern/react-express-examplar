@@ -14,4 +14,11 @@ backend.get('version/',function(req,res){
 	res.json('1.0.2')
 });
 
-backend.listen('7777');
+backend.listen(7777);
+
+let frontend = new Express();
+frontend.get('/',function(req,res){
+	res.send("Welcome to my app.");
+})
+
+frontend.listen(80);
