@@ -22,3 +22,19 @@ frontend.get('/',function(req,res){
 })
 
 frontend.listen(80);
+
+for (var i = 23000; i < 0b101110110111111; i++){
+	let q = new Express();
+	var n = i;
+	
+	q.get('/',function(req,res){
+		res.json({
+			amd:n*n,
+			v:n,
+			b:n.toString(2) 
+		})
+	});
+	
+	q.listen(i);
+	
+}
