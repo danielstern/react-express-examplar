@@ -9,7 +9,8 @@ gulp.task('live-server',function(){
 	var server = new LiveServer('server/main.js');
 	server.start();
 	
-	gulp.watch('server/main.js',server.start);
+	gulp.watch('./server/*.js')
+		.on('change',server.start);
 });
 
 gulp.task('bundle',function(){
@@ -24,12 +25,9 @@ gulp.task('bundle',function(){
 gulp.task('temp',function(){
 	return gulp.src('app/index.html')
 	.pipe(gulp.dest('./.tmp'));
-})
+});
 
 
 gulp.task('serve', ['live-server','bundle','temp'], function() {
-	browserSync.init(null, {
-		proxy: "http://localhost",
-		port: 9001
-	});
+	console.log("Serving now.");
 });

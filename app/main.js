@@ -1,1 +1,1 @@
-dispatcher = require('./dispatcher.js');
+var dispatcher = require('./dispatcher.js');
