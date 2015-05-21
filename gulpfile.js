@@ -2,7 +2,7 @@ var browserSync = require('browser-sync');
 var gulp = require('gulp');
 var LiveServer = require('gulp-live-server');
 var source = require('vinyl-source-stream');
-//var babelify = require('babelify');
+var babelify = require('babelify');
 var browserify = require('browserify');
 var reactify = require('reactify');
 
@@ -15,6 +15,7 @@ gulp.task('bundle',function(){
 	return browserify({
 		entries:'app/main.jsx',
 	})
+	.transform(babelify)
 	.transform(reactify)
 	.bundle()
 	.pipe(source('app.js'))

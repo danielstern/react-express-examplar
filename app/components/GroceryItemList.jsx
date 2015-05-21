@@ -3,7 +3,6 @@
 let GroceryItem = require('./GroceryItem.jsx'),
 	GroceryListAddItem = require('./GroceryListAddItem.jsx'),
 	GroceryItemStore = require('./../stores/GroceryItemStore.jsx');
-/*let GroceryItem = require('./components/GroceryItem.jsx');*/
 
 module.exports = React.createClass({
 	getInitialState:function(){
@@ -12,9 +11,8 @@ module.exports = React.createClass({
 		}
 	},
 	componentDidMount:function(){
-		var component = this;
-		GroceryItemStore.onChange(function(){
-			component.setState({items:GroceryItemStore.getGroceryItems()})
+		GroceryItemStore.onChange(()=>{
+			this.setState({items:GroceryItemStore.getGroceryItems()})
 		})
 	},
 	render:function(){

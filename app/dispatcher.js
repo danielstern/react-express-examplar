@@ -9,8 +9,8 @@ var dispatcher = {
 		return id;
 	},
 	dispatch:function(payload){
-		for (id in listeners){
-			listener = listeners[id];
+		for (var id in listeners){
+			var listener = listeners[id];
 			listener(payload);
 		}	
 	}
