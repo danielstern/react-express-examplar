@@ -1,37 +1,28 @@
 var dispatcher = require("./../dispatcher.js");
 
 module.exports = {
-	add:function(name,cost){
+	add:function(item){
 		dispatcher.dispatch({
 			type:"grocery-item:add",
-			payload:{
-				name: name,
-				purchased: false
-			}
+			payload:item
 		})
 	},
-	buy:function(id){
+	buy:function(item){
 		dispatcher.dispatch({
 			type:"grocery-item:buy",
-			payload:{
-				id:id
-			}
+			payload:item
 		})
 	},
-	unbuy:function(id){
+	unbuy:function(item){
 		dispatcher.dispatch({
 			type:"grocery-item:unbuy",
-			payload:{
-				id:id
-			}
+			payload:item
 		})
 	},
-	delete:function(id){
+	delete:function(item){
 		dispatcher.dispatch({
 			type:"grocery-item:delete",
-			payload:({
-				id:id
-			})
+			payload:item
 		});		
 	}
 

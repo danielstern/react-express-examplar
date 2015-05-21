@@ -21,7 +21,7 @@ module.exports = React.createClass({
 				Grocery Items On Your List
 				{this.state.items.map((item,index)=>{
 					return (
-						<GroceryItem name={item.name} purchased={item.purchased} id={item.id} key={"item"+index} />		
+						<GroceryItem item={item} key={"item"+index} />		
 					)
 				})}
 				<GroceryListAddItem />

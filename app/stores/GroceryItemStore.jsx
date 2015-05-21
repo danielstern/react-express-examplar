@@ -25,7 +25,7 @@ function GroceryItemStore(){
 	})	
 	
 	function removeGroceryItem(item){
-		var index = groceryItems.findIndex(x => x.id===item.id);
+		var index = groceryItems.findIndex(x => x._id===item._id);
 		groceryItems.splice(index,1);
 		triggerListeners();
 	}
@@ -37,6 +37,13 @@ function GroceryItemStore(){
 			$.post("http://localhost:7777/items",item,function(data,status){
 				console.log("Add complete",data,status);
 			})
+	}
+	
+	function setGroceryItemBought(item, isPurchased){
+		//debugger;
+		groceryItems.find(function(i){return i._id===item._id})
+			.purchased = isPurchased || false;;
+		triggerListeners();
 	}
 	
 	function getGroceryItems(){
@@ -56,6 +63,12 @@ function GroceryItemStore(){
 					break;
 				case "delete":
 					removeGroceryItem(event.payload);
+					break;
+				case "buy":
+					setGroceryItemBought(event.payload, true);
+					break;
+				case "unbuy":
+					setGroceryItemBought(event.payload, false);
 					break;
 			}
 		}
