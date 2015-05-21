@@ -30,7 +30,7 @@ gulp.task('temp',function(){
 });
 
 gulp.task('observe-all',function(){
-	gulp.watch('app/*.*',['bundle'])
+	gulp.watch('app/**/*.*',['bundle'])
 		.on('change',browserSync.reload);
 	gulp.watch('app/*.html',['temp']);
 	gulp.watch('./server/*.js',['live-server']);
