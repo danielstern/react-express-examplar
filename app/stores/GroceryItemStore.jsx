@@ -33,8 +33,16 @@ function GroceryItemStore(){
 		changeListeners.push(listener);		
 	}
 	
-	dispatcher.register(function(payload){
-		console.log("Store got payload...",payload);
+	dispatcher.register(function(event){
+		console.log("Store got payload...",event);
+		var split = event.type.split(':');
+		if (split[0]==='grocery-item'){
+			if (split[1]==='add'){
+				console.log("adding item.");
+				groceryItems.push(event.payload);
+				triggerListeners();
+			}
+		}
 	})
 	
   

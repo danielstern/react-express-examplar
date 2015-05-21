@@ -12,7 +12,10 @@ module.exports = React.createClass({
 		}
 	},
 	componentDidMount:function(){
-		
+		var component = this;
+		GroceryItemStore.onChange(function(){
+			component.setState({items:GroceryItemStore.getGroceryItems()})
+		})
 	},
 	render:function(){
 		return (
