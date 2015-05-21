@@ -25,6 +25,14 @@ module.exports = {
 				id:id
 			}
 		})
+	},
+	delete:function(id){
+		dispatcher.dispatch({
+			type:"grocery-item:delete",
+			payload:({
+				id:id
+			})
+		});		
 	}
 
 }

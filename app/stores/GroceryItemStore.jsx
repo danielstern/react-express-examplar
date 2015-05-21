@@ -29,7 +29,7 @@ function GroceryItemStore(){
 	};
 	
 	function removeGroceryItem(item){
-		var index = groceryItems.findIndex(x => x.name===item.name);
+		var index = groceryItems.findIndex(x => x.id===item.id);
 		groceryItems.splice(index,1);
 		triggerListeners();
 	}

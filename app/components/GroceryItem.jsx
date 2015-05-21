@@ -14,18 +14,15 @@ module.exports = React.createClass({
 			purchased: !state.purchased
 		});
 		
-		
-		groceryAction
-		
+		if (state.purchased){
+			groceryAction.buy(this.props.id);
+		} else {
+			groceryAction.unbuy(this.props.id);
+		}		
 	},
 	delete:function(e){
 		e.preventDefault();
-		dispatcher.dispatch({
-			type:"grocery-item:delete",
-			payload:({
-				name:this.props.name
-			})
-		});		
+		groceryAction.delete(this.props.id);
 	},
 	render:function(){
 		return (
