@@ -11,15 +11,16 @@ gulp.task('live-server',function(){
 	server.start();
 });
 
-gulp.task('bundle',function(){
-	return browserify({
+gulp.task('bundle',function(done){
+	browserify({
 		entries:'app/main.jsx',
 	})
 	.transform(babelify)
 	.transform(reactify)
 	.bundle()
 	.pipe(source('app.js'))
-	.pipe(gulp.dest('./.tmp'));
+	.pipe(gulp.dest('./.tmp'))
+	.on('end',done);
 });
 
 gulp.task('temp',function(){
@@ -30,9 +31,10 @@ gulp.task('temp',function(){
 		.pipe(gulp.dest('./.tmp/bower_components'));
 });
 
+gulp.task('bundle-n-reload',['bundle'],browserSync.reload)
+
 gulp.task('observe-all',function(){
-	gulp.watch('app/**/*.*',['bundle'])
-		.on('change',browserSync.reload);
+	gulp.watch('app/**/*.*',['bundle-n-reload']);
 	gulp.watch('app/*.html',['temp']);
 	gulp.watch('./server/*.js',['live-server']);
 });
