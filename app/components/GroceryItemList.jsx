@@ -1,6 +1,7 @@
 "use strict";
 
 let GroceryItem = require('./GroceryItem.jsx'),
+	GroceryListAddItem = require('./GroceryListAddItem.jsx'),
 	GroceryItemStore = require('./../stores/GroceryItemStore.jsx');
 /*let GroceryItem = require('./components/GroceryItem.jsx');*/
 
@@ -19,7 +20,7 @@ module.exports = React.createClass({
 						<GroceryItem name={item.name} purchased={item.purchased} key={"item"+index} />		
 					)
 				})}
-				
+				<GroceryListAddItem />
 			</div>
 		)
 	}
