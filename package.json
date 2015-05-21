@@ -17,6 +17,8 @@
     "reactify": "^1.1.1"
   },
   "dependencies": {
-    "guid": "0.0.12"
+    "cors": "^2.6.0",
+    "guid": "0.0.12",
+    "mongoose": "^4.0.3"
   }
 }
