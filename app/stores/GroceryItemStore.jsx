@@ -18,6 +18,10 @@ function GroceryItemStore(){
 		dataType:"json",
 		success:function(data){
 			console.log("Got the data.",data);		
+			while(data[0]){
+				groceryItems.push(data.pop());
+			}
+			triggerListeners();
 		}
 	})
 	
