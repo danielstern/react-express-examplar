@@ -3,12 +3,12 @@ var guid = require('guid');
 var listeners = {};
 
 var dispatcher = {
-	register:function(callback){
+	register(callback){
 		var id = guid.raw();
 		listeners[id] = callback;
 		return id;
 	},
-	dispatch:function(payload){
+	dispatch(payload){
 		for (var id in listeners){
 			var listener = listeners[id];
 			listener(payload);

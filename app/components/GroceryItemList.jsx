@@ -19,7 +19,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				Grocery Items On Your List
-				{this.state.items.map(function(item,index){
+				{this.state.items.map((item,index)=>{
 					return (
 						<GroceryItem name={item.name} purchased={item.purchased} key={"item"+index} />		
 					)

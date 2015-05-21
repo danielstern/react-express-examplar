@@ -11,16 +11,15 @@ gulp.task('live-server',function(){
 	server.start();
 });
 
-gulp.task('bundle',function(done){
-	browserify({
+gulp.task('bundle',function(){
+	return browserify({
 		entries:'app/main.jsx',
 	})
 	.transform(babelify)
 	.transform(reactify)
 	.bundle()
 	.pipe(source('app.js'))
-	.pipe(gulp.dest('./.tmp'))
-	.on('end',done);
+	.pipe(gulp.dest('./.tmp'));
 });
 
 gulp.task('temp',function(){
