@@ -1,3 +1,5 @@
+var dispatcher = require("./../dispatcher.js");
+
 module.exports = React.createClass({
 	getInitialState:function(){
 		return {
@@ -11,6 +13,15 @@ module.exports = React.createClass({
 			purchased:true
 		})
 	},
+	delete:function(e){
+		e.preventDefault();
+		dispatcher.dispatch({
+			type:"grocery-item:delete",
+			payload:({
+				name:this.props.name
+			})
+		});		
+	},
 	render:function(){
 		return (
 			<div>
@@ -21,7 +32,10 @@ module.exports = React.createClass({
 					 {this.props.name}
 				</div>
 				<form onSubmit={this.purchase}>
-					<button>Buy me</button>
+					<button>Bought</button>
+				</form>
+				<form onSubmit={this.delete}>
+					<button>Remove</button>
 				</form>
 			</div>
 		)

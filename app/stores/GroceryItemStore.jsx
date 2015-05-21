@@ -1,6 +1,5 @@
 "use strict";
-
-var dispatcher = require("./../dispatcher.js");
+let dispatcher = require("./../dispatcher.js");
 
 function GroceryItemStore(){
 	
@@ -25,6 +24,12 @@ function GroceryItemStore(){
 		})
 	};
 	
+	function removeGroceryItem(item){
+		var index = groceryItems.find(x => x.name===item.name);
+		groceryItems.splice(index,1);
+		triggerListeners();
+	}
+	
 	function getGroceryItems(){
 		return groceryItems;
 	};
@@ -34,13 +39,17 @@ function GroceryItemStore(){
 	}
 	
 	dispatcher.register(function(event){
-		console.log("Store got payload...",event);
 		var split = event.type.split(':');
 		if (split[0]==='grocery-item'){
-			if (split[1]==='add'){
-				console.log("adding item.");
-				groceryItems.push(event.payload);
-				triggerListeners();
+			switch(split[1]) {
+				case "add":
+					groceryItems.push(event.payload);
+					triggerListeners();
+					break;
+				case "delete":
+					console.log("store deleting grocery item.");
+					removeGroceryItem(event.payload);
+					break;
 			}
 		}
 	})

@@ -14,9 +14,13 @@ gulp.task('live-server',function(){
 gulp.task('bundle',function(){
 	return browserify({
 		entries:'app/main.jsx',
+		debug:true,
 	})
-	.transform(babelify)
 	.transform(reactify)
+	.transform(babelify.configure({
+		stage:0,
+		sourceMaps:true
+	}))
 	.bundle()
 	.pipe(source('app.js'))
 	.pipe(gulp.dest('./.tmp'));
