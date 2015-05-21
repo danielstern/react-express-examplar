@@ -23,7 +23,7 @@ module.exports = React.createClass({
 				Grocery Items On Your List
 				{this.state.items.map(function(item,index){
 					return (
-						<GroceryItem name={item.name} key={"item"+index} />		
+						<GroceryItem name={item.name} purchased={item.purchased} key={"item"+index} />		
 					)
 				})}
 				
