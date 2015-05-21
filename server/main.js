@@ -25,11 +25,11 @@ mongoose.connect('mongodb://localhost/grocery',function(){
 });
 
 
+let app = new Express();
 
-let backend = new Express();
-backend.use(cors());
-backend.use(parser.json())
-backend.get('/',function(req,res){
+app.use(cors());
+app.use(parser.json());
+app.get('api/',function(req,res){
 	res.json({
 		version:'version/',
 		items:{
@@ -37,28 +37,21 @@ backend.get('/',function(req,res){
 			all:'/',
 		}
 	})
-});
-
-backend.get('version/',function(req,res){
+})
+.get('version/',function(req,res){
 	res.json('1.0.2')
-});
+})
+.use(Express.static(__dirname + '/../.tmp'))
+.listen(7777)
 
-backend.get('/items',function(req,res){
+app.route('/items')
+.get(function(req,res){
 	GroceryItem.find(function(error,doc){
 		res.send(doc);
 	})
-});
-
-backend.post('/items',function(req,res){
+})
+.post(function(req,res){
 	var groceryItem = new GroceryItem({
 		name:req.body.name || "Beans"
 	});
 })
- 
-backend.listen(7777);
-
-
-
-let frontend = new Express();
-frontend.use(Express.static(__dirname + '/../.tmp'))
-frontend.listen(80);
