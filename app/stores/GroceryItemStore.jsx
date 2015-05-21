@@ -1,5 +1,6 @@
 "use strict";
 let dispatcher = require("./../dispatcher.js");
+var guid = require('guid');
 
 function GroceryItemStore(){
 	
@@ -7,14 +8,17 @@ function GroceryItemStore(){
 			name:"Oats",
 			purchased:false,
 			price:3.00,				
+			id:20193201
 		},{
 			name:"Milk",
 			purchased:true,
-			price:7.00,				
+			price:7.00,
+			id:948204389
 		},{
 			name:"Bread",
 			purchased:false,
-			price:2.00,				
+			price:2.00,	
+			id:3409034
 		}],
 		changeListeners = [];
 		
@@ -43,7 +47,9 @@ function GroceryItemStore(){
 		if (split[0]==='grocery-item'){
 			switch(split[1]) {
 				case "add":
-					groceryItems.push(event.payload);
+					var item = event.payload;
+					item.id = guid.raw();
+					groceryItems.push(item);
 					triggerListeners();
 					break;
 				case "delete":

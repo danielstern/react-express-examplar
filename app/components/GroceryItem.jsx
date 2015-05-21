@@ -1,4 +1,5 @@
 var dispatcher = require("./../dispatcher.js");
+var groceryAction = require("./../stores/GroceryItemActionCreator.jsx");
 
 module.exports = React.createClass({
 	getInitialState:function(){
@@ -13,12 +14,9 @@ module.exports = React.createClass({
 			purchased: !state.purchased
 		});
 		
-		dispatcher.dispatch({
-			type:"grocery-item:" + (state.purchased ? "unbuy" : "buy"),
-			payload:{
-				name:this.props.name
-			}
-		})
+		
+		groceryAction
+		
 	},
 	delete:function(e){
 		e.preventDefault();

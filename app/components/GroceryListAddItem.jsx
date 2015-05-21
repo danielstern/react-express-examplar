@@ -1,4 +1,4 @@
-var dispatcher = require("./../dispatcher.js");
+var groceryAction = require("./../stores/GroceryItemActionCreator.jsx");
 
 module.exports = React.createClass({
 	getInitialState: function(){
@@ -8,14 +8,7 @@ module.exports = React.createClass({
 	},
 	addItem:function(e){
 		e.preventDefault();
-		console.log("Adding item...",this.state.input);
-		dispatcher.dispatch({
-			type:"grocery-item:add",
-			payload:{
-				name: this.state.input,
-				purchased: false
-			}
-		});
+		groceryAction.add(this.state.input);
 		this.setState({
 			input:''
 		})
@@ -27,14 +20,11 @@ module.exports = React.createClass({
 		return (
 		 <div>
 			<form onSubmit={this.addItem}>
-				<label>
-					Item Name
 					<input 
 						type="text" 
 						value={this.state.input}						
 						onChange={this.handleInputName}
 					/>
-				</label>
 				<button>Add a new Item to the list</button>
 			</form>
 			</div>
