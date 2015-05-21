@@ -22,17 +22,24 @@ gulp.task('bundle',function(){
 });
 
 gulp.task('temp',function(){
-	return gulp.src('app/index.html')
-	.pipe(gulp.dest('./.tmp'));
+	gulp.src(['app/index.html'])
+		.pipe(gulp.dest('./.tmp'));
+	
+	gulp.src(['bower_components/**'])
+		.pipe(gulp.dest('./.tmp/bower_components'));
 });
 
 gulp.task('observe-all',function(){
-	gulp.watch('app/*.*',['bundle']);
+	gulp.watch('app/*.*',['bundle'])
+		.on('change',browserSync.reload);
 	gulp.watch('app/*.html',['temp']);
 	gulp.watch('./server/*.js',['live-server']);
-})
+});
 
 
-gulp.task('serve', ['live-server','bundle','temp'], function() {
-	console.log("Serving now.");
+gulp.task('serve', ['live-server','bundle','temp','observe-all'], function() {
+	browserSync.init(null, {
+		proxy: "http://localhost",
+		port: 9001
+	});
 });

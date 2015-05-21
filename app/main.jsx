@@ -12,4 +12,4 @@ var GroceryListApp = React.createClass({
 	}
 });
 
-React.render(mount,<GroceryListApp/>)
+React.render(<GroceryListApp/>,mount);
