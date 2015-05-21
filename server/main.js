@@ -2,6 +2,7 @@
 
 let Express = require('express');
 let cors = require('cors');
+let parser = require('body-parser');
 let mongoose = require('mongoose');
 
 let groceryItemSchema = {
@@ -25,10 +26,9 @@ mongoose.connect('mongodb://localhost/grocery',function(){
 
 
 
-
-
 let backend = new Express();
 backend.use(cors());
+backend.use(parser.json())
 backend.get('/',function(req,res){
 	res.json({
 		version:'version/',
@@ -47,6 +47,12 @@ backend.get('/items',function(req,res){
 	GroceryItem.find(function(error,doc){
 		res.send(doc);
 	})
+});
+
+backend.post('/items',function(req,res){
+	var groceryItem = new GroceryItem({
+		name:req.body.name || "Beans"
+	});
 })
  
 backend.listen(7777);

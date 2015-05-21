@@ -17,20 +17,26 @@ function GroceryItemStore(){
 		url:"http://localhost:7777/items",
 		dataType:"json",
 		success:function(data){
-			console.log("Got the data.",data);		
 			while(data[0]){
 				groceryItems.push(data.pop());
 			}
 			triggerListeners();
 		}
-	})
-	
-	
+	})	
 	
 	function removeGroceryItem(item){
 		var index = groceryItems.findIndex(x => x.id===item.id);
 		groceryItems.splice(index,1);
 		triggerListeners();
+	}
+	
+	function addGroceryItem(item){
+			item.id = guid.raw();
+			groceryItems.push(item);
+			triggerListeners();
+			$.post("http://localhost:7777/items",item,function(data,status){
+				console.log("Add complete",data,status);
+			})
 	}
 	
 	function getGroceryItems(){
@@ -46,10 +52,7 @@ function GroceryItemStore(){
 		if (split[0]==='grocery-item'){
 			switch(split[1]) {
 				case "add":
-					var item = event.payload;
-					item.id = guid.raw();
-					groceryItems.push(item);
-					triggerListeners();
+					addGroceryItem(event.payload);
 					break;
 				case "delete":
 					removeGroceryItem(event.payload);
