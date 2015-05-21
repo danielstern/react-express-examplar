@@ -1,6 +1,9 @@
 "use strict";
 
+var dispatcher = require("./../dispatcher.js");
+
 function GroceryItemStore(){
+	
 	let groceryItems = [{
 			name:"Oats",
 			purchased:false,
@@ -29,6 +32,10 @@ function GroceryItemStore(){
 	function onChange(listener){
 		changeListeners.push(listener);		
 	}
+	
+	dispatcher.register(function(payload){
+		console.log("Store got payload...",payload);
+	})
 	
   
 	return {

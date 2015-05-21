@@ -11,6 +11,9 @@ module.exports = React.createClass({
 			items:GroceryItemStore.getGroceryItems()
 		}
 	},
+	componentDidMount:function(){
+		
+	},
 	render:function(){
 		return (
 			<div>

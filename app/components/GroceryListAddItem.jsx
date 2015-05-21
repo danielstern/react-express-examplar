@@ -9,7 +9,12 @@ module.exports = React.createClass({
 	addItem:function(e){
 		e.preventDefault();
 		console.log("Adding item...",this.state.input);
-		
+		dispatcher.dispatch({
+			type:"grocery-item:add",
+			payload:{
+				name: this.state.input
+			}
+		})
 	},
 	handleInputName:function(e){
 		this.setState({input : e.target.value})	
