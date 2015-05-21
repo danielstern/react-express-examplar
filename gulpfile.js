@@ -4,19 +4,18 @@ var LiveServer = require('gulp-live-server');
 var source = require('vinyl-source-stream');
 //var babelify = require('babelify');
 var browserify = require('browserify');
+var reactify = require('reactify');
 
 gulp.task('live-server',function(){
 	var server = new LiveServer('server/main.js');
 	server.start();
-	
-	gulp.watch('./server/*.js')
-		.on('change',server.start);
 });
 
 gulp.task('bundle',function(){
 	return browserify({
-		entries:'app/main.js',
+		entries:'app/main.jsx',
 	})
+	.transform(reactify)
 	.bundle()
 	.pipe(source('app.js'))
 	.pipe(gulp.dest('./.tmp'));
@@ -26,6 +25,12 @@ gulp.task('temp',function(){
 	return gulp.src('app/index.html')
 	.pipe(gulp.dest('./.tmp'));
 });
+
+gulp.task('observe-all',function(){
+	gulp.watch('app/*.*',['bundle']);
+	gulp.watch('app/*.html',['temp']);
+	gulp.watch('./server/*.js',['live-server']);
+})
 
 
 gulp.task('serve', ['live-server','bundle','temp'], function() {
