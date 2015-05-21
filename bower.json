@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.13.3"
+    "react": "~0.13.3",
+    "es6-shim": "~0.31.2"
   }
 }
