@@ -32,6 +32,10 @@ backend.use(cors());
 backend.get('/',function(req,res){
 	res.json({
 		version:'version/',
+		items:{
+			root:'items',
+			all:'/',
+		}
 	})
 });
 

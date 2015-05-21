@@ -4,22 +4,7 @@ var guid = require('guid');
 
 function GroceryItemStore(){
 	
-	let groceryItems = [{
-			name:"Oats",
-			purchased:false,
-			price:3.00,				
-			id:20193201
-		},{
-			name:"Milk",
-			purchased:true,
-			price:7.00,
-			id:948204389
-		},{
-			name:"Bread",
-			purchased:false,
-			price:2.00,	
-			id:3409034
-		}],
+	let groceryItems = [],
 		changeListeners = [];
 		
 	function triggerListeners(){
@@ -27,6 +12,16 @@ function GroceryItemStore(){
 			listener(groceryItems)	;
 		})
 	};
+	
+	$.ajax({
+		url:"http://localhost:7777/items",
+		dataType:"json",
+		success:function(data){
+			console.log("Got the data.",data);		
+		}
+	})
+	
+	
 	
 	function removeGroceryItem(item){
 		var index = groceryItems.findIndex(x => x.id===item.id);
