@@ -1,3 +1,5 @@
+var dispatcher = require("./../dispatcher.js");
+
 module.exports = React.createClass({
 	getInitialState: function(){
 		return {
