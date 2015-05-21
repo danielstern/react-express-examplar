@@ -6,12 +6,11 @@ module.exports = React.createClass({
 			purchased:this.props.purchased
 		}
 	},
-	purchase:function(e){
-		console.log("You bought me.");
+	togglePurchased:function(e){
 		e.preventDefault();
 		this.setState({
-			purchased:true
-		})
+			purchased: !this.state.purchased
+		});
 	},
 	delete:function(e){
 		e.preventDefault();
@@ -26,13 +25,13 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<div>
-					 {this.state.purchased ? "purchased" : ''}
+					 {this.state.purchased ? "purchased" : 'not purchased'}
 				</div>
 				<div>
 					 {this.props.name}
 				</div>
-				<form onSubmit={this.purchase}>
-					<button>Bought</button>
+				<form onSubmit={this.togglePurchased}>
+					<button>{this.state.purchased ? "cancel" : "buy"}</button>
 				</form>
 				<form onSubmit={this.delete}>
 					<button>Remove</button>

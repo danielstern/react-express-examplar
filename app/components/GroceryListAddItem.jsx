@@ -12,8 +12,12 @@ module.exports = React.createClass({
 		dispatcher.dispatch({
 			type:"grocery-item:add",
 			payload:{
-				name: this.state.input
+				name: this.state.input,
+				purchased: false
 			}
+		});
+		this.setState({
+			input:''
 		})
 	},
 	handleInputName:function(e){

@@ -25,7 +25,7 @@ function GroceryItemStore(){
 	};
 	
 	function removeGroceryItem(item){
-		var index = groceryItems.find(x => x.name===item.name);
+		var index = groceryItems.findIndex(x => x.name===item.name);
 		groceryItems.splice(index,1);
 		triggerListeners();
 	}
