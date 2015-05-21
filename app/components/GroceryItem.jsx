@@ -8,9 +8,17 @@ module.exports = React.createClass({
 	},
 	togglePurchased:function(e){
 		e.preventDefault();
+		var state = this.state;
 		this.setState({
-			purchased: !this.state.purchased
+			purchased: !state.purchased
 		});
+		
+		dispatcher.dispatch({
+			type:"grocery-item:" + (state.purchased ? "unbuy" : "buy"),
+			payload:{
+				name:this.props.name
+			}
+		})
 	},
 	delete:function(e){
 		e.preventDefault();

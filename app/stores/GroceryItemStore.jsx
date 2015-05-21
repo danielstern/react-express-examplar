@@ -47,7 +47,6 @@ function GroceryItemStore(){
 					triggerListeners();
 					break;
 				case "delete":
-					console.log("store deleting grocery item.");
 					removeGroceryItem(event.payload);
 					break;
 			}
