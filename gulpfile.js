@@ -39,7 +39,7 @@ gulp.task('bundle-n-reload',['bundle'],browserSync.reload)
 gulp.task('observe-all',function(){
 	gulp.watch('app/**/*.*',['bundle-n-reload']);
 	gulp.watch('app/*.html',['temp']);
-	gulp.watch('./server/*.js',['live-server']);
+	gulp.watch('./server/**/*.js',['live-server']);
 });
 
 

@@ -4,7 +4,8 @@ let mongoose = require('mongoose');
 let GroceryItemSchema = {
 	name:String,
 	id:String,
-	cost:Number
+	cost:Number,
+	purchased:Boolean
 };
 
 let GroceryItem = mongoose.model('GroceryItem',GroceryItemSchema,'groceryItems');

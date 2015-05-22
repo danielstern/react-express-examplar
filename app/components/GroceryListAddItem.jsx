@@ -26,6 +26,7 @@ module.exports = React.createClass({
 			<form onSubmit={this.addItem}>
 					<input 
 						type="text" 
+						required
 						value={this.state.input}						
 						onChange={this.handleInputName}
 					/>

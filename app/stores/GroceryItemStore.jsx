@@ -46,9 +46,18 @@ function GroceryItemStore(){
 	}
 	
 	function setGroceryItemBought(item, isPurchased){
-		groceryItems.find(function(i){return i._id===item._id})
-			.purchased = isPurchased || false;;
+		var item = groceryItems.find(function(i){return i._id===item._id});
+		item.purchased = isPurchased || false;;
 		triggerListeners();
+		
+		$.ajax({
+			url:"api/items/"+item._id,
+			type:'PATCH',
+			data:item,
+			success:function(){
+				console.log("Path success.");
+			}
+		})
 	}
 	
 	function getGroceryItems(){

@@ -76,15 +76,21 @@ app.route('/api/items/:id')
 	})
 })
 .patch(function(req,res){
-	GroceryItem.find({_id:req.params.id},function(error,doc){
-		for (key in req.body){
+	console.log("patching",req.body);
+	GroceryItem.findOne({
+		_id:req.body._id
+	},function(err,doc){
+		if (!doc){
+			return res.status(404).send();
+		}
+		console.log("Found...",doc);
+		for (var key in req.body){
 			doc[key] = req.body[key];
 		};
-		
-		doc.save(function(err){
-			res.status(200).send();
-		});
+		doc.save();
+		res.status(200).send(doc);
 	})
+		
 })
 	
 app.use(express.static(__dirname + '/../.tmp'))
