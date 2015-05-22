@@ -70,10 +70,21 @@ app.route('/api/items/:id')
 })
 .delete(function(req,res){
 	GroceryItem.find({_id:req.params.id})
-		.remove(function(){
-		res.status(202)
-			.send();
-		})
+	.remove(function(){
+	res.status(202)
+		.send();
+	})
+})
+.patch(function(req,res){
+	GroceryItem.find({_id:req.params.id},function(error,doc){
+		for (key in req.body){
+			doc[key] = req.body[key];
+		};
+		
+		doc.save(function(err){
+			res.status(200).send();
+		});
+	})
 })
 	
 app.use(express.static(__dirname + '/../.tmp'))
