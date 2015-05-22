@@ -1,6 +1,6 @@
 "use strict";
 let dispatcher = require("./../dispatcher.js");
-var guid = require('guid');
+let {get,post} = require("./../RestHelper.js");
 
 function GroceryItemStore(){
 	
