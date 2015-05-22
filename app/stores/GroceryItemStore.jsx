@@ -38,7 +38,6 @@ function GroceryItemStore(){
 	}
 	
 	function addGroceryItem(item){
-			item.id = guid.raw();
 			groceryItems.push(item);
 			triggerListeners();
 			$.post("http://localhost:7777/items",item,function(data,status){
@@ -47,7 +46,6 @@ function GroceryItemStore(){
 	}
 	
 	function setGroceryItemBought(item, isPurchased){
-		//debugger;
 		groceryItems.find(function(i){return i._id===item._id})
 			.purchased = isPurchased || false;;
 		triggerListeners();

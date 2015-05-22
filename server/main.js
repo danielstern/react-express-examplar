@@ -28,6 +28,7 @@ mongoose.connect('mongodb://localhost/grocery',function(){
 let app = new Express();
 
 app.use(cors());
+app.use(parser.urlencoded({ extended: false }));
 app.use(parser.json());
 app.get('api/',function(req,res){
 	res.json({
@@ -52,6 +53,15 @@ app.route('/items')
 })
 .post(function(req,res){
 	var groceryItem = new GroceryItem(req.body);
+	console.log("Creating new item...",req.body.name);
+	groceryItem.save(function(err,data){
+		if (err) {
+			res.status(501).send();
+		} else {
+			res.status(200).send();
+		}
+	});
+	;
 })
 
 

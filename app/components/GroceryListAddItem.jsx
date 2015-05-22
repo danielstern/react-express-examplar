@@ -8,7 +8,11 @@ module.exports = React.createClass({
 	},
 	addItem:function(e){
 		e.preventDefault();
-		groceryAction.add(this.state.input);
+		
+		groceryAction.add({
+			name:	this.state.input
+		});
+		
 		this.setState({
 			input:''
 		})
