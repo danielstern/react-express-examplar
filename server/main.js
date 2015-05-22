@@ -39,7 +39,7 @@ app.get('/api',function(req,res){
 .use(express.static(__dirname + '/../.tmp'))
 .listen(7777);
 
-var itemsRouter = express.Router()
+var itemsRouter = app.route()
 .get(function(req,res){
 	GroceryItem.find(function(error,doc){
 		res.send(doc);
@@ -72,4 +72,5 @@ itemsRouter
 		})
 })
 
-app.use('/api/items',itemsRouter)
+app.use('/a',itemsRouter)			
+//app.use('/api/items',itemsRouter)
