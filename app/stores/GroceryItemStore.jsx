@@ -26,13 +26,14 @@ function GroceryItemStore(){
 	
 	function removeGroceryItem(item){
 		var index = groceryItems.findIndex(x => x._id===item._id);
-		groceryItems.splice(index,1);
+		var removed = groceryItems.splice(index,1)[0];
 		triggerListeners();
 		$.ajax({
 			url:"api/items/"+item._id,
 			type:'DELETE',
-			success:function(){
-				console.log("Deleted success.");
+			error:function(){
+				groceryItems.splice(index,0,removed);
+				triggerListeners();
 			}
 		})
 	}
@@ -53,10 +54,7 @@ function GroceryItemStore(){
 		$.ajax({
 			url:"api/items/"+item._id,
 			type:'PATCH',
-			data:item,
-			success:function(){
-				console.log("Path success.");
-			}
+			data:item
 		})
 	}
 	
