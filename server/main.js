@@ -20,9 +20,10 @@ mongoose.connect('mongodb://localhost/grocery',function(){
 
 let app = new express();
 
-app.use(cors());
-app.use(parser.urlencoded({ extended: false }));
-app.use(parser.json());
+app.use(cors())
+.use(parser.urlencoded({ extended: false }))
+.use(parser.json())
+
 
 app.get('/api',function(req,res){
 	res.json({
@@ -36,10 +37,9 @@ app.get('/api',function(req,res){
 .get('/api/version/',function(req,res){
 	res.json('1.0.2')
 })
-.use(express.static(__dirname + '/../.tmp'))
-.listen(7777);
 
-var itemsRouter = app.route()
+
+app.route('/api/items')
 .get(function(req,res){
 	GroceryItem.find(function(error,doc){
 		res.send(doc);
@@ -57,20 +57,24 @@ var itemsRouter = app.route()
 	;
 });
 
-itemsRouter
-.get('/:_id',function(req,res){
-	GroceryItem.find({_id:req.params._id},function(error,doc){
+app.route('/api/items/:id')
+.get(function(req,res){
+	GroceryItem.find({_id:req.params.id},function(error,doc){
+		if (error){
+			return res.status(404).send();
+		}
+		console.log("Found doc.",doc);
 		res.status(200)
 			.send(doc);
 	})
 })
-.delete('/:_id',function(req,res){
-	GroceryItem.find({_id:req.params._id})
+.delete(function(req,res){
+	GroceryItem.find({_id:req.params.id})
 		.remove(function(){
 		res.status(202)
 			.send();
 		})
 })
-
-app.use('/a',itemsRouter)			
-//app.use('/api/items',itemsRouter)
+	
+app.use(express.static(__dirname + '/../.tmp'))
+.listen(7777);
