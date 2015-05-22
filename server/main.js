@@ -51,9 +51,7 @@ app.route('/items')
 	})
 })
 .post(function(req,res){
-	var groceryItem = new GroceryItem({
-		name:req.body.name || "Beans"
-	});
+	var groceryItem = new GroceryItem(req.body);
 })
 
 
