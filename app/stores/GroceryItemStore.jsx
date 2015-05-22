@@ -1,6 +1,6 @@
 "use strict";
 let dispatcher = require("./../dispatcher.js");
-let {get,post} = require("./../RestHelper.js");
+let {get,post,del,patch} = require("./../RestHelper.js");
 
 function GroceryItemStore(){
 	
@@ -13,37 +13,33 @@ function GroceryItemStore(){
 		})
 	};
 	
-	$.ajax({
-		url:"api/items",
-		dataType:"json",
-		success:function(data){
-			while(data[0]){
-				groceryItems.push(data.pop());
-			}
-			triggerListeners();
-		}
-	})	
+	get("api/items")
+	.then((data)=>{
+		groceryItems = data;
+		triggerListeners();
+	});
+
 	
 	function removeGroceryItem(item){
 		var index = groceryItems.findIndex(x => x._id===item._id);
 		var removed = groceryItems.splice(index,1)[0];
 		triggerListeners();
-		$.ajax({
-			url:"api/items/"+item._id,
-			type:'DELETE',
-			error:function(){
-				groceryItems.splice(index,0,removed);
-				triggerListeners();
-			}
+
+		del(`api/items/${item._id}`)
+		.catch(()=>{
+			groceryItems.splice(index,0,removed);
+			triggerListeners();
 		})
 	}
 	
 	function addGroceryItem(item){
-			groceryItems.push(item);
-			triggerListeners();
-			$.post("/api/items",item,function(data,status){
-				console.log("Add complete",data,status);
-			})
+		var i = groceryItems.push(item);
+		triggerListeners();
+
+		post("/api/items",item)
+		.catch(()=>{
+			groceryItems.splice(i,1);
+		})
 	}
 	
 	function setGroceryItemBought(item, isPurchased){
@@ -51,11 +47,7 @@ function GroceryItemStore(){
 		item.purchased = isPurchased || false;;
 		triggerListeners();
 		
-		$.ajax({
-			url:"api/items/"+item._id,
-			type:'PATCH',
-			data:item
-		})
+		patch(`api/items/${item._id}`,data);
 	}
 	
 	function getGroceryItems(){

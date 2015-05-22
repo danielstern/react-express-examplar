@@ -1,12 +1,33 @@
 module.exports = {
-	get(url,success){
-		$.ajax({
-			url:url,
-			dataType:"json",
-			success
+	get(url){
+		return new Promise(function(success,error){
+			$.ajax({
+				url:url,
+				dataType:"json",
+				success,
+				error
+			});
+		});
+	},
+	del(url){
+		return new Promise(function(success,error){
+			$.ajax({
+				url:url,
+				type:'DELETE',
+				success,
+				error
+			})
 		})
 	},
-	post(){
-
+	post(url,data){
+		return new Promise(function(success,error){
+			$.ajax({
+				url,
+				type:'POST',
+				data,
+				success,
+				error
+			})
+		})
 	}
 }
