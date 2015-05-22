@@ -14,7 +14,7 @@ function GroceryItemStore(){
 	};
 	
 	$.ajax({
-		url:"http://localhost:7777/items",
+		url:"api/items",
 		dataType:"json",
 		success:function(data){
 			while(data[0]){
@@ -29,7 +29,7 @@ function GroceryItemStore(){
 		groceryItems.splice(index,1);
 		triggerListeners();
 		$.ajax({
-			url:"http://localhost:7777/items/"+item._id,
+			url:"api/items/"+item._id,
 			type:'DELETE',
 			success:function(){
 				console.log("Deleted success.");
@@ -40,7 +40,7 @@ function GroceryItemStore(){
 	function addGroceryItem(item){
 			groceryItems.push(item);
 			triggerListeners();
-			$.post("http://localhost:7777/items",item,function(data,status){
+			$.post("/api/items",item,function(data,status){
 				console.log("Add complete",data,status);
 			})
 	}

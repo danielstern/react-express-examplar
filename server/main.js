@@ -1,18 +1,11 @@
 "use strict";
 
-let Express = require('express');
+let express = require('express');
 let cors = require('cors');
 let parser = require('body-parser');
 let mongoose = require('mongoose');
+let GroceryItem = require('./models/GroceryItem.js');
 
-let groceryItemSchema = {
-	name:String,
-	id:String,
-	cost:Number
-};
-
-
-let GroceryItem = mongoose.model('GroceryItem',groceryItemSchema,'groceryItems');
 
 mongoose.connect('mongodb://localhost/grocery',function(){
 	mongoose.connection.db.dropDatabase();
@@ -25,12 +18,13 @@ mongoose.connect('mongodb://localhost/grocery',function(){
 });
 
 
-let app = new Express();
+let app = new express();
 
 app.use(cors());
 app.use(parser.urlencoded({ extended: false }));
 app.use(parser.json());
-app.get('api/',function(req,res){
+
+app.get('/api',function(req,res){
 	res.json({
 		version:'version/',
 		items:{
@@ -39,13 +33,13 @@ app.get('api/',function(req,res){
 		}
 	})
 })
-.get('version/',function(req,res){
+.get('/api/version/',function(req,res){
 	res.json('1.0.2')
 })
-.use(Express.static(__dirname + '/../.tmp'))
-.listen(7777)
+.use(express.static(__dirname + '/../.tmp'))
+.listen(7777);
 
-app.route('/items')
+var itemsRouter = express.Router()
 .get(function(req,res){
 	GroceryItem.find(function(error,doc){
 		res.send(doc);
@@ -53,7 +47,6 @@ app.route('/items')
 })
 .post(function(req,res){
 	var groceryItem = new GroceryItem(req.body);
-	console.log("Creating new item...",req.body.name);
 	groceryItem.save(function(err,data){
 		if (err) {
 			res.status(501).send();
@@ -62,20 +55,21 @@ app.route('/items')
 		}
 	});
 	;
-})
+});
 
-
-app.route('/items/:_id')
-.get(function(req,res){
+itemsRouter
+.get('/:_id',function(req,res){
 	GroceryItem.find({_id:req.params._id},function(error,doc){
 		res.status(200)
 			.send(doc);
 	})
 })
-.delete(function(req,res){
+.delete('/:_id',function(req,res){
 	GroceryItem.find({_id:req.params._id})
 		.remove(function(){
 		res.status(202)
 			.send();
 		})
 })
+
+app.use('/api/items',itemsRouter)
