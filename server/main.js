@@ -55,3 +55,19 @@ app.route('/items')
 		name:req.body.name || "Beans"
 	});
 })
+
+
+app.route('/items/:_id')
+.get(function(req,res){
+	GroceryItem.find({_id:req.params._id},function(error,doc){
+		res.status(200)
+			.send(doc);
+	})
+})
+.delete(function(req,res){
+	GroceryItem.find({_id:req.params._id})
+		.remove(function(){
+		res.status(202)
+			.send();
+		})
+})

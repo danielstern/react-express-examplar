@@ -28,6 +28,13 @@ function GroceryItemStore(){
 		var index = groceryItems.findIndex(x => x._id===item._id);
 		groceryItems.splice(index,1);
 		triggerListeners();
+		$.ajax({
+			url:"http://localhost:7777/items/"+item._id,
+			type:'DELETE',
+			success:function(){
+				console.log("Deleted success.");
+			}
+		})
 	}
 	
 	function addGroceryItem(item){
