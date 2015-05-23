@@ -1,4 +1,5 @@
 var listeners = {};
+let guid = require('guid');
 
 var dispatcher = {
 	register(callback){

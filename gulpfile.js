@@ -17,8 +17,8 @@ gulp.task('bundle',function(){
 		entries:'app/components/GroceryItem.jsx',
 		debug:true,
 	})
-	.transform(babelify)
-	.transform(reactify)
+//	.transform(babelify)
+//	.transform(reactify)
 	.transform(babelify.configure({
 		stage:0,
 		sourceMaps:true

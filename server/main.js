@@ -5,11 +5,12 @@ let cors = require('cors');
 let parser = require('body-parser');
 let mongoose = require('mongoose');
 let GroceryItem = require('./models/GroceryItem.js');
-let reactTools = require('react-tools');
-let browserify = require('browserify');
+//let reactTools = require('react-tools');
+//let browserify = require('browserify');
 let React = require('react/addons');
-let babelify = require('babelify');
-require('node-jsx').install({harmony:true,extension:'.jsx'});
+//let babelify = require('babelify');
+require('babel/register');
+//require('node-jsx').install({harmony:true,extension:'.jsx'});
 
 
 mongoose.connect('mongodb://localhost/grocery',function(){
@@ -98,26 +99,15 @@ app.route('/api/items/:id')
 });
 
 app.get('/',function(req,res){
-////	browserify({
-////		entries:'app/components/GroceryListApp.jsx',
-////		debug:true,
-////	})
-////	.transform();
-//	var app = React.createFactory(
-//		reactTools.transform(
-//			require('./../app/Simple.jsx')
-////			'./../app/Simple.jsx'
-//		)
-//	);
-//		var app = React.createFactory(require('./../.tmp/app.js'));
-		var app = React.createFactory(require('./../app/components/GroceryItem.jsx'));
-		var generated = React.renderToString(app({
-			item:{
-				name:"Candy",
-				purchased:true
-			}
-		}));
-		res.render('./../server/index.ejs',{reactOutput:generated});
+
+		var app = React.createFactory(require('./../app/components/GroceryItemList.jsx'));
+		GroceryItem.find(function(error,doc){
+			var generated = React.renderToString(app({
+				items:doc
+			}));
+			res.render('./../server/index.ejs',{reactOutput:generated});
+		})
+
 })
 	
 //app.use(express.static(__dirname + '/../.tmp'));
