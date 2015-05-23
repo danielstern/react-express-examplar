@@ -13,7 +13,8 @@ gulp.task('live-server',function(){
 
 gulp.task('bundle',function(){
 	return browserify({
-		entries:'app/components/GroceryListApp.jsx',
+//		entries:'app/components/GroceryListApp.jsx',
+		entries:'app/components/GroceryItem.jsx',
 		debug:true,
 	})
 	.transform(babelify)

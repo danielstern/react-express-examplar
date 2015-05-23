@@ -1,5 +1,3 @@
-var guid = require('guid');
-
 var listeners = {};
 
 var dispatcher = {
@@ -16,4 +14,4 @@ var dispatcher = {
 		}	
 	}
 };
-module.exports = dispatcher; 
+module.exports = dispatcher;

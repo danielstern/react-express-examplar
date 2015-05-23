@@ -102,15 +102,14 @@ app.get('/',function(req,res){
 ////		debug:true,
 ////	})
 ////	.transform();
-////	var app = React.createFactory(
-////		reactTools.transform(
-////
-////			require('./../app/components/GroceryItem.jsx')
-////		)
-////	);
-		var app = reactTools.transform(require('./../app/components/GroceryItem.jsx'));
+	var app = React.createFactory(
+		reactTools.transform(
+			require('./../app/components/GroceryItem.jsx')
+		)
+	);
+//		var app = React.createFactory(require('./../.tmp/app.js'));
 //		var app = React.createFactory(require('./../app/components/GroceryItem.jsx'));
-//		var generated = React.renderToString(app({}));
+		var generated = React.renderToString(app({}));
 //		res.render('index.ejs',{reactOutput:generated});
 })
 	
