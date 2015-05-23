@@ -9,7 +9,7 @@ let reactTools = require('react-tools');
 let browserify = require('browserify');
 let React = require('react/addons');
 let babelify = require('babelify');
-require('node-jsx').install({harmony:true,extension:'jsx'});
+require('node-jsx').install({harmony:true,extension:'.jsx'});
 
 
 mongoose.connect('mongodb://localhost/grocery',function(){
@@ -103,17 +103,22 @@ app.get('/',function(req,res){
 ////		debug:true,
 ////	})
 ////	.transform();
-	var app = React.createFactory(
-		reactTools.transform(
+//	var app = React.createFactory(
+//		reactTools.transform(
 //			require('./../app/Simple.jsx')
-			'./../app/Simple.jsx'
-		)
-	);
+////			'./../app/Simple.jsx'
+//		)
+//	);
 //		var app = React.createFactory(require('./../.tmp/app.js'));
-//		var app = React.createFactory(require('./../app/components/GroceryItem.jsx'));
-		var generated = React.renderToString(app({}));
-//		res.render('index.ejs',{reactOutput:generated});
+		var app = React.createFactory(require('./../app/components/GroceryItem.jsx'));
+		var generated = React.renderToString(app({
+			item:{
+				name:"Candy",
+				purchased:true
+			}
+		}));
+		res.render('./../server/index.ejs',{reactOutput:generated});
 })
 	
-app.use(express.static(__dirname + '/../.tmp'));
+//app.use(express.static(__dirname + '/../.tmp'));
 app.listen(7777);

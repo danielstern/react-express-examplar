@@ -1,4 +1,5 @@
-/** @jsx React.DOM */
+var React = require('react/addons');
+
 var Simple = React.createClass({
 	render:function(){
 		return (
