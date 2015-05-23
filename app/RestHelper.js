@@ -1,3 +1,5 @@
+let $ = require('jquery');
+
 module.exports = {
 	get(url){
 		return new Promise(function(success,error){

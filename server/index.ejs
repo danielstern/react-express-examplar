@@ -1,19 +1,17 @@
 <!doctype html>
 <html>
   <head>
-    <title>React Isomorphic Server Side Rendering Example</title>
-    <link href='/styles.css' rel="stylesheet">
+    <title>Grocery Listify</title>
+<!--    <link href='/styles.css' rel="stylesheet">-->
+ 	<script src='bower_components/es6-shim/es6-shim.js'></script>
   </head>
   <body>
-    <h1 id="main-title">React Isomorphic Server Side Rendering Example</h1>
-    <!-- reactOutput is the server compiled React Dom Nodes -->
-    <!-- comment out reactOutput to see empty non indexable source in browser -->
+    <h1 id="main-title">From Isomorph</h1>
     <div id="mount">
       <%- reactOutput %>
     </div>
 
-    <!-- comment out main.js to ONLY see server side rendering -->
-<!--    <script src="/main.js"></script>-->
+    <script src="/app.js"></script>
 
 
   </body>
