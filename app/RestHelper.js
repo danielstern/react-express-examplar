@@ -29,5 +29,16 @@ module.exports = {
 				error
 			})
 		})
+	},
+	patch(url,data){
+		return new Promise(function(success,error){
+			$.ajax({
+				url,
+				type:'PATCH',
+				data,
+				success,
+				error
+			})
+		})
 	}
 }

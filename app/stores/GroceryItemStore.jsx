@@ -47,7 +47,7 @@ function GroceryItemStore(){
 		item.purchased = isPurchased || false;;
 		triggerListeners();
 		
-		patch(`api/items/${item._id}`,data);
+		patch(`api/items/${item._id}`,item);
 	}
 	
 	function getGroceryItems(){
