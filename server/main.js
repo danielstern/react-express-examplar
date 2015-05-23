@@ -63,7 +63,7 @@ app.route('/api/items/:id')
 		if (error){
 			return res.status(404).send();
 		}
-		console.log("Found doc.",doc);
+
 		res.status(200)
 			.send(doc);
 	})
@@ -90,7 +90,11 @@ app.route('/api/items/:id')
 		res.status(200).send(doc);
 	})
 		
-})
+});
+
+//app.get('/',function(req,res){
+//	var app =
+//})
 	
-app.use(express.static(__dirname + '/../.tmp'))
-.listen(7777);
+app.use(express.static(__dirname + '/../.tmp'));
+app.listen(7777);

@@ -2,6 +2,7 @@
 
 let GroceryItem = require('./GroceryItem.jsx'),
 	GroceryListAddItem = require('./GroceryListAddItem.jsx'),
+	React = require('react/addons'),
 	GroceryItemStore = require('./../stores/GroceryItemStore.jsx');
 
 module.exports = React.createClass({

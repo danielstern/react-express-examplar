@@ -1,4 +1,5 @@
 var groceryAction = require("./../stores/GroceryItemActionCreator.jsx");
+let React = require('react/addons');
 
 module.exports = React.createClass({
 	getInitialState: function(){
