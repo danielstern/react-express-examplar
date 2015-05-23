@@ -76,14 +76,13 @@ app.route('/api/items/:id')
 	})
 })
 .patch(function(req,res){
-	console.log("patching",req.body);
 	GroceryItem.findOne({
 		_id:req.body._id
 	},function(err,doc){
 		if (!doc){
 			return res.status(404).send();
 		}
-		console.log("Found...",doc);
+
 		for (var key in req.body){
 			doc[key] = req.body[key];
 		};
