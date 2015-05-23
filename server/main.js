@@ -9,6 +9,7 @@ let reactTools = require('react-tools');
 let browserify = require('browserify');
 let React = require('react/addons');
 let babelify = require('babelify');
+require('node-jsx').install({harmony:true,extension:'jsx'});
 
 
 mongoose.connect('mongodb://localhost/grocery',function(){
@@ -104,7 +105,8 @@ app.get('/',function(req,res){
 ////	.transform();
 	var app = React.createFactory(
 		reactTools.transform(
-			require('./../app/components/GroceryItem.jsx')
+//			require('./../app/Simple.jsx')
+			'./../app/Simple.jsx'
 		)
 	);
 //		var app = React.createFactory(require('./../.tmp/app.js'));
