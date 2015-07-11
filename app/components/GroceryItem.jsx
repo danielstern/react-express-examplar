@@ -18,17 +18,19 @@ module.exports = React.createClass({
     },
     render:function(){
         return (
-            <div>
-                <div>
-                <h4 className={this.props.item.purchased ? "strikethrough" : ""}>{this.props.item.name}</h4>
-                </div>
-                <form className="three columns" onSubmit={this.togglePurchased}>
-					<button className={this.props.item.purchased ? "" : "button-primary"}>{this.props.item.purchased ? "Unbuy" : "Buy"}</button>
+           <div className="grocery-item row">
+				<div className="six columns">
+					<h4 className={this.props.item.purchased ? "strikethrough" : "" }>
+						{this.props.item.name}
+					</h4>
+				</div>
+				<form onSubmit={this.togglePurchased} className="three columns">
+					<button className={this.props.item.purchased ? "" : "button-primary"}>{this.props.item.purchased ? "unbuy" : "buy"}</button>
 				</form>
-                <form className="three columns" onSubmit={this.delete}>
+				<form className="three columns" onSubmit={this.delete}>
 					<button>&times;</button>
 				</form>
-            </div>
+			</div>
         )
     }
 })
