@@ -15,5 +15,10 @@ module.exports = function (app){
     .get(function(req,res){
         res.send(items);
     })
+    .post(function(req,res){
+        console.log("Adding item...",item);
+        var item = req.body;
+        items.push(item);
+    })
     
 }
