@@ -1,0 +1,29 @@
+commit 0760db785e75fe11f4fc5697c201c87512153a68
+Author: Code Whisperer <daniel@danielstern.ca>
+Date:   Tue Jun 23 10:45:39 2015 -0400
+
+    react component end
+
+commit 6837fd7359a55f5443a09ea4ff90a8390a64237e
+Author: Code Whisperer <daniel@danielstern.ca>
+Date:   Tue Jun 23 10:02:08 2015 -0400
+
+    completed gulp/browserify scaffold
+
+commit be1f85948d81ac6ee8f7a82e7cb53cf394d6b3e2
+Author: Code Whisperer <daniel@danielstern.ca>
+Date:   Tue Jun 23 09:37:44 2015 -0400
+
+    finish gulpfile
+
+commit 80f4e7ef564684c0666bfc4ea41dabb8e28b6959
+Author: Code Whisperer <daniel@danielstern.ca>
+Date:   Tue Jun 23 09:27:29 2015 -0400
+
+    scaffold p1 end
+
+commit 8f3bedda501cc945a30a52047d970b9b440d1c64
+Author: Code Whisperer <daniel@danielstern.ca>
+Date:   Tue Jun 23 09:09:30 2015 -0400
+
+    Course begin (files removed)
