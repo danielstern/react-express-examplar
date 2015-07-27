@@ -4,6 +4,8 @@ var app = new express();
 
 var parser = require('body-parser');
 
+require('./database.js');
+
 app.get('/',function(req,res){
     res.render('./../app/index.ejs',{});
 })
